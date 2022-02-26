@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@kin-sdk/client": "^0.7.0",
+    "@kin-sdk/react-native": "^0.1.6",
+    "@react-native-async-storage/async-storage": "^1.16.1",
+    "parse": "^3.4.1"
+  }
+}

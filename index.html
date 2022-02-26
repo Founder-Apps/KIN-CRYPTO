@@ -1,0 +1,61 @@
+
+<html>
+    <head>
+      <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <title>Kin CRYPTO APP
+    </title>
+    <style>
+      body {font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }
+      div { width: 800px; height: 400px; margin: 40px auto; padding: 20px; border: 2px solid #5298fc; }
+      h1 { font-size: 30px; margin: 0; }
+      p { margin: 40px 0; }
+      em { font-family: monospace; }
+      a { color: #5298fc; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <h1>JS SDK</h1>   
+<input id="username" type="text" placeholder="Username"/>
+<input id="email" type="email" placeholder="Email"/>
+<input id="password" type="password" placeholder="Password" />
+<button id="createButton">Create User</button>
+    <div>
+      <h1>Thank you for choosing Kin Crypto for your performance needs!  Make sure to decide if you want cloud run actions or to develop your own KRE earning app.</h1>
+      <p>Choose the KRE Developer flow if you want to make your own KRE earning app using your own provider.</p>
+      <p>For more cloud based options.</p>
+    </div>
+  </body>
+</html>
+<script>
+  // Initialize Parse
+    Parse.initialize("0uEqMNbB6x0BGLY6USEY4y4pYEfLQcBg1AVdSHLx", "auRpDHMUIrY2XrTsVrZruS2bgcIp8aheLFP4Phkd"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+    Parse.serverURL = "https://parseapi.back4app.com/";
+  </script>
+// Create a new User
+async function createParseUser() {
+  // Creates a new Parse "User" object, which is created by default in your Parse app
+  let user = new Parse.User();
+  // Set the input values to the new "User" object
+  user.set("username", document.getElementById("username").value);
+  user.set("email", document.getElementById("email").value);
+  user.set("password", document.getElementById("password").value);
+  try {
+    // Call the save method, which returns the saved object if successful
+    user = await user.save();
+    if (user !== null) {
+      // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+      alert(
+        `New object created with success! ObjectId: ${
+          user.id
+        }, ${user.get("username")}`
+      );
+    }
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+  }
+}
+
+// Add on click listener to call the create parse user function
+document.getElementById("createButton").addEventListener("click", async function () {
+  createParseUser();
+});
